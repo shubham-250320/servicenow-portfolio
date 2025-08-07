@@ -68,13 +68,13 @@ const ContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     setIsSubmitting(false);
     setIsSubmitted(true);
-    
+
     // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false);
@@ -102,7 +102,7 @@ const ContactSection = () => {
             Let&apos;s <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">Connect</span>
           </h2>
           <p className="text-xl text-blue-200 max-w-3xl mx-auto">
-            Ready to discuss your ServiceNow AI/ML initiatives? I&apos;m available for senior developer roles, 
+            Ready to discuss your ServiceNow AI/ML initiatives? I&apos;m available for senior developer/analyst roles,
             technical consultations, and strategic implementations.
           </p>
         </motion.div>
@@ -122,21 +122,19 @@ const ContactSection = () => {
                   <motion.a
                     key={method.label}
                     href={method.href}
-                    className={`flex items-start gap-4 p-4 rounded-xl transition-all duration-300 ${
-                      method.primary 
-                        ? 'bg-gradient-to-r from-blue-500/20 to-green-500/20 hover:from-blue-500/30 hover:to-green-500/30' 
+                    className={`flex items-start gap-4 p-4 rounded-xl transition-all duration-300 ${method.primary
+                        ? 'bg-gradient-to-r from-blue-500/20 to-green-500/20 hover:from-blue-500/30 hover:to-green-500/30'
                         : 'hover:bg-white/10'
-                    }`}
+                      }`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.02 }}
                   >
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                      method.primary 
-                        ? 'bg-gradient-to-br from-blue-500 to-green-500' 
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${method.primary
+                        ? 'bg-gradient-to-br from-blue-500 to-green-500'
                         : 'bg-white/20'
-                    }`}>
+                      }`}>
                       <method.icon size={24} className="text-white" />
                     </div>
                     <div className="flex-1">
@@ -154,15 +152,15 @@ const ContactSection = () => {
               <h3 className="text-xl font-bold text-white mb-4">Quick Stats</h3>
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-400">₹40-50L</div>
-                  <div className="text-blue-200 text-xs">Target Salary</div>
+                  <div className="text-2xl font-bold text-green-400">Senior Roles</div>
+                  <div className="text-blue-200 text-xs">Target Position</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-400">24hrs</div>
                   <div className="text-blue-200 text-xs">Response Time</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-400">3.6+</div>
+                  <div className="text-2xl font-bold text-green-400">3.7+</div>
                   <div className="text-blue-200 text-xs">Years Experience</div>
                 </div>
                 <div className="text-center">
@@ -207,7 +205,7 @@ const ContactSection = () => {
           >
             <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
               <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
@@ -267,11 +265,10 @@ const ContactSection = () => {
                     {projectTypes.map((type) => (
                       <motion.label
                         key={type.id}
-                        className={`flex flex-col p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
-                          formData.projectType === type.id
+                        className={`flex flex-col p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${formData.projectType === type.id
                             ? 'border-blue-400 bg-blue-500/20'
                             : 'border-white/30 hover:border-white/50 hover:bg-white/5'
-                        }`}
+                          }`}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
@@ -306,11 +303,10 @@ const ContactSection = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting || isSubmitted}
-                  className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${
-                    isSubmitted
+                  className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${isSubmitted
                       ? 'bg-green-500 text-white'
                       : 'bg-gradient-to-r from-blue-600 to-green-600 text-white hover:shadow-lg hover:scale-[1.02]'
-                  }`}
+                    }`}
                   whileHover={!isSubmitting && !isSubmitted ? { scale: 1.02 } : {}}
                   whileTap={!isSubmitting && !isSubmitted ? { scale: 0.98 } : {}}
                 >

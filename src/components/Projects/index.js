@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, ArrowRight, Filter, Brain, Zap, Users } from 'lucide-react';
+// import { projects, getFeaturedProjects, getProjectsByCategory } from '../../data/projects';
 import { projects, getFeaturedProjects, getProjectsByCategory } from '../../data/projects';
+
 
 const ProjectsSection = () => {
   const [selectedFilter, setSelectedFilter] = useState('all');

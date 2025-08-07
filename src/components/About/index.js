@@ -1,8 +1,99 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Award, Target, Heart, Code, Users, TrendingUp, Calendar, MapPin, Mail } from 'lucide-react';
+import { useState, useCallback } from 'react';
+import { Award, Target, Heart, Code, Users, TrendingUp, Calendar, MapPin, Mail, Download, Check, AlertCircle, Loader } from 'lucide-react';
 
 const AboutSection = () => {
+  const [downloadState, setDownloadState] = useState('idle'); // idle, downloading, success, error
+
+  // Professional Resume Download Handler
+  const handleResumeDownload = useCallback(async () => {
+    try {
+      setDownloadState('downloading');
+
+      // Your resume file path based on provided location
+      const resumeUrl = '/Resume/Shubham_Soni_ServiceNow_AI_ML_Engineer_3.6YOE.pdf';
+      const fileName = 'Shubham_Soni_ServiceNow_AI_ML_Engineer_3.6YOE.pdf';
+
+      // Check if file exists first
+      const response = await fetch(resumeUrl, { method: 'HEAD' });
+
+      if (!response.ok) {
+        throw new Error('Resume file not found');
+      }
+
+      // Create download link
+      const link = document.createElement('a');
+      link.href = resumeUrl;
+      link.download = fileName;
+      link.target = '_blank'; // Fallback to open in new tab
+
+      // Temporarily add to DOM and trigger click
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Success state
+      setDownloadState('success');
+
+      // Optional: Analytics tracking
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'resume_download', {
+          event_category: 'engagement',
+          event_label: 'about_section'
+        });
+      }
+
+      // Reset state after 2 seconds
+      setTimeout(() => setDownloadState('idle'), 2000);
+
+    } catch (error) {
+      console.error('Resume download failed:', error);
+      setDownloadState('error');
+
+      // Show user-friendly error and reset state
+      setTimeout(() => {
+        setDownloadState('idle');
+        // Fallback: Try to open resume link or contact info
+        alert('Resume download temporarily unavailable. Please contact me directly at shubham.soni1729@gmail.com');
+      }, 2000);
+    }
+  }, []);
+
+  // Get button content based on download state
+  const getDownloadButtonContent = () => {
+    switch (downloadState) {
+      case 'downloading':
+        return (
+          <>
+            <Loader size={20} className="animate-spin" />
+            Downloading...
+          </>
+        );
+      case 'success':
+        return (
+          <>
+            <Check size={20} className="text-green-500" />
+            Downloaded!
+          </>
+        );
+      case 'error':
+        return (
+          <>
+            <AlertCircle size={20} className="text-red-500" />
+            Try Again
+          </>
+        );
+      default:
+        return (
+          <>
+            <Download size={20} />
+            Download Resume
+          </>
+        );
+    }
+  };
+
   const values = [
     {
       icon: Code,
@@ -71,11 +162,17 @@ const AboutSection = () => {
     },
     {
       period: "2025 Vision",
-      title: "Senior Developer Transition",
-      description: "Targeting senior developer/technical consultant roles with expanded AI/ML expertise and architecture capabilities.",
-      achievements: ["₹40-50L target roles", "CIS-VA certification", "Technical leadership focus"]
+      title: "Senior Technical Leadership Transition",
+      description: "Advancing to senior developer/technical consultant roles with expanded AI/ML expertise and enterprise architecture capabilities.",
+      achievements: [
+        "Advanced ServiceNow AI/ML certifications",
+        "Enterprise solution architecture expertise",
+        "Technical team leadership and mentoring",
+        "Strategic platform consulting excellence"
+      ]
     }
   ];
+
 
   const personalInterests = [
     { icon: "🚀", title: "Emerging AI/ML Technologies", description: "Exploring latest ServiceNow AI capabilities" },
@@ -113,15 +210,15 @@ const AboutSection = () => {
           >
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">My Professional Journey</h3>
-              
+
               <div className="space-y-6">
                 <div>
                   <h4 className="text-lg font-semibold text-blue-600 mb-3 flex items-center gap-2">
                     🎯 Foundation & Discovery
                   </h4>
                   <p className="text-gray-700 leading-relaxed">
-                    My journey began with a strong foundation in Computer Applications, where I discovered the power of 
-                    enterprise platforms. The transition to ServiceNow opened up a world of possibilities in business 
+                    My journey began with a strong foundation in Computer Applications, where I discovered the power of
+                    enterprise platforms. The transition to ServiceNow opened up a world of possibilities in business
                     process automation and AI-powered solutions that could transform how organizations operate.
                   </p>
                 </div>
@@ -131,8 +228,8 @@ const AboutSection = () => {
                     🚀 Growth & Specialization
                   </h4>
                   <p className="text-gray-700 leading-relaxed">
-                    At Infosys, I evolved from platform basics to specialized ITSM implementations. This period was crucial 
-                    in developing my understanding of enterprise-scale challenges and the importance of scalable, 
+                    At Infosys, I evolved from platform basics to specialized ITSM implementations. This period was crucial
+                    in developing my understanding of enterprise-scale challenges and the importance of scalable,
                     maintainable solutions. I led initiatives that reduced incident backlogs by 25% for 5,000+ users.
                   </p>
                 </div>
@@ -142,8 +239,8 @@ const AboutSection = () => {
                     ⚡ AI/ML Innovation
                   </h4>
                   <p className="text-gray-700 leading-relaxed">
-                    Joining Volkswagen Group marked my transition into AI/ML specialization. Here, I pioneered Virtual Agent 
-                    optimization, achieving 80% accuracy improvements and 40% L1 deflection. This experience taught me that 
+                    Joining Volkswagen Group marked my transition into AI/ML specialization. Here, I pioneered Virtual Agent
+                    optimization, achieving 80% accuracy improvements and 40% L1 deflection. This experience taught me that
                     true innovation comes from combining technical excellence with deep business understanding.
                   </p>
                 </div>
@@ -153,8 +250,8 @@ const AboutSection = () => {
                     🎖️ Recognition & Impact
                   </h4>
                   <p className="text-gray-700 leading-relaxed">
-                    Recognition through innovation awards and hackathon victories validated my approach of focusing on 
-                    measurable business outcomes. These achievements reflect not just technical skills, but the ability 
+                    Recognition through innovation awards and hackathon victories validated my approach of focusing on
+                    measurable business outcomes. These achievements reflect not just technical skills, but the ability
                     to translate complex AI/ML concepts into practical solutions that drive real business value.
                   </p>
                 </div>
@@ -164,9 +261,9 @@ const AboutSection = () => {
                     🔮 Vision & Future Goals
                   </h4>
                   <p className="text-gray-700 leading-relaxed">
-                    I envision a future where AI-powered ITSM becomes the standard for enterprise operations. My goal 
-                    is to continue pushing the boundaries of what&apos;s possible with ServiceNow AI/ML capabilities while 
-                    mentoring the next generation of developers. I&apos;m seeking senior roles where I can architect 
+                    I envision a future where AI-powered ITSM becomes the standard for enterprise operations. My goal
+                    is to continue pushing the boundaries of what&apos;s possible with ServiceNow AI/ML capabilities while
+                    mentoring the next generation of developers. I&apos;m seeking senior roles where I can architect
                     transformative solutions at scale.
                   </p>
                 </div>
@@ -293,8 +390,9 @@ const AboutSection = () => {
             </div>
 
             {/* Current Status */}
+
             <div className="bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl shadow-lg p-6 text-white">
-              <h3 className="text-xl font-bold mb-4">Current Availability</h3>
+              <h3 className="text-xl font-bold mb-4">Professional Status</h3>
               <div className="space-y-4">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
@@ -302,39 +400,40 @@ const AboutSection = () => {
                     <span className="font-semibold">Open to Senior Opportunities</span>
                   </div>
                   <p className="text-blue-100 text-sm">
-                    Actively seeking ServiceNow Senior Developer positions at ₹40-50L
+                    Actively seeking Senior ServiceNow Developer and Technical Consultant positions
                   </p>
                 </div>
-                
+
                 <div className="flex items-start gap-2">
                   <MapPin size={16} className="mt-1" />
                   <div>
-                    <span className="font-semibold block">Location</span>
-                    <p className="text-blue-100 text-sm">Bangalore, Karnataka (Remote/Hybrid)</p>
+                    <span className="font-semibold block">Location Flexibility</span>
+                    <p className="text-blue-100 text-sm">Bangalore, Karnataka (Remote/Hybrid globally)</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start gap-2">
                   <Calendar size={16} className="mt-1" />
                   <div>
-                    <span className="font-semibold block">Response Time</span>
-                    <p className="text-blue-100 text-sm">Within 24 hours for opportunities</p>
+                    <span className="font-semibold block">Availability</span>
+                    <p className="text-blue-100 text-sm">Immediate start with flexible notice period</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start gap-2">
                   <Mail size={16} className="mt-1" />
                   <div>
-                    <span className="font-semibold block">Contact</span>
+                    <span className="font-semibold block">Professional Contact</span>
                     <p className="text-blue-100 text-sm">shubham.soni1729@gmail.com</p>
                   </div>
                 </div>
               </div>
             </div>
+
           </motion.div>
         </div>
 
-        {/* Call to Action */}
+        {/* Call to Action with Working Download */}
         <motion.div
           className="text-center bg-white rounded-2xl shadow-lg p-8 border border-gray-100"
           initial={{ opacity: 0, y: 20 }}
@@ -343,7 +442,7 @@ const AboutSection = () => {
         >
           <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Drive Your ServiceNow AI Transformation?</h3>
           <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Let&apos;s discuss how my expertise in ServiceNow AI/ML can help accelerate your digital transformation initiatives 
+            Let&apos;s discuss how my expertise in ServiceNow AI/ML can help accelerate your digital transformation initiatives
             and deliver measurable business outcomes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -355,12 +454,20 @@ const AboutSection = () => {
             >
               Schedule a Consultation
             </motion.button>
+
+            {/* Enhanced Download Resume Button with Working Functionality */}
             <motion.button
-              className="px-8 py-4 border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className={`px-8 py-4 border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-all duration-300 flex items-center justify-center gap-2 min-w-[200px] ${downloadState === 'downloading' ? 'opacity-75 cursor-not-allowed' : ''
+                } ${downloadState === 'success' ? 'border-green-300 bg-green-50 text-green-700' : ''
+                } ${downloadState === 'error' ? 'border-red-300 bg-red-50 text-red-700' : ''
+                }`}
+              whileHover={downloadState === 'idle' ? { scale: 1.05 } : {}}
+              whileTap={downloadState === 'idle' ? { scale: 0.95 } : {}}
+              onClick={handleResumeDownload}
+              disabled={downloadState === 'downloading'}
+              aria-label="Download Shubham Soni's ServiceNow AI/ML Resume PDF"
             >
-              Download Resume
+              {getDownloadButtonContent()}
             </motion.button>
           </div>
         </motion.div>

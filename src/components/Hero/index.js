@@ -2,20 +2,31 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Download, Mail, Github, Linkedin } from 'lucide-react';
+import Image from 'next/image';
+
+const handleResumeDownload = () => {
+  const resumeUrl = '/Resume/Shubham_Soni_ServiceNow_AI_ML_Engineer_3.6YOE.pdf';
+  const link = document.createElement('a');
+  link.href = resumeUrl;
+  link.download = 'Shubham_Soni_ServiceNow_AI_ML_Engineer_3.6YOE.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
 const HeroSection = () => {
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
   const [typedText, setTypedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  
+
   // Use useRef to avoid re-creating the array on each render
   const headlinesRef = useRef([
     "ServiceNow AI Implementation Architect",
-    "Transforming Enterprise ITSM with AI/ML", 
+    "Transforming Enterprise ITSM with AI/ML",
     "Proven 30% Performance Gains at Scale"
   ]);
-  
+
   const metrics = [
     { label: "Incident Resolution Improvement", value: 30, suffix: "%" },
     { label: "Virtual Agent Accuracy", value: 80, suffix: "%" },
@@ -25,21 +36,21 @@ const HeroSection = () => {
   ];
 
   const techStack = [
-    "ServiceNow Platform", "AI/ML", "Predictive Intelligence", 
+    "ServiceNow Platform", "AI/ML", "Predictive Intelligence",
     "Virtual Agent", "JavaScript", "React", "Integration Hub"
   ];
 
   // Typing effect configuration
-  const TYPING_SPEED = 50;     // milliseconds per character
-  const DELETE_SPEED = 30;      // milliseconds per character when deleting
-  const PAUSE_DURATION = 1000;  // milliseconds to pause at end of each headline
-  const DELETE_DELAY = 1000;    // milliseconds to wait before starting to delete
+  const TYPING_SPEED = 50;
+  const DELETE_SPEED = 30;
+  const PAUSE_DURATION = 1000;
+  const DELETE_DELAY = 1000;
 
   // Optimized typing effect with proper cleanup
   const typeWriter = useCallback(() => {
     const headlines = headlinesRef.current;
     const currentHeadline = headlines[currentHeadlineIndex];
-    
+
     if (!isDeleting && !isPaused) {
       // Typing forward
       if (typedText.length < currentHeadline.length) {
@@ -118,7 +129,7 @@ const HeroSection = () => {
           {/* Left Column - Content */}
           <div className="space-y-8">
             <motion.div variants={itemVariants} className="space-y-4">
-              <motion.h1 
+              <motion.h1
                 className="text-5xl lg:text-6xl font-bold text-white leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -128,7 +139,7 @@ const HeroSection = () => {
                   Shubham Soni
                 </span>
               </motion.h1>
-              
+
               {/* Optimized Typing Animation Container */}
               <div className="h-20 lg:h-24 flex items-start">
                 <h2 className="text-2xl lg:text-3xl text-blue-200 font-medium leading-tight">
@@ -138,12 +149,12 @@ const HeroSection = () => {
                   </span>
                 </h2>
               </div>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-blue-100 leading-relaxed max-w-2xl"
                 variants={itemVariants}
               >
-                Certified ServiceNow AI/ML Developer with 3.6+ years delivering enterprise-grade automation 
+                Certified ServiceNow AI/ML Developer with 3.6+ years delivering enterprise-grade automation
                 for Fortune 500 clients. Specialized in Virtual Agents, Predictive Intelligence, and AI-powered workflows.
               </motion.p>
             </motion.div>
@@ -183,8 +194,8 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.5 + index * 0.1 }}
-                    whileHover={{ 
-                      scale: 1.05, 
+                    whileHover={{
+                      scale: 1.05,
                       backgroundColor: "rgba(59, 130, 246, 0.3)",
                       borderColor: "rgba(255, 255, 255, 0.4)"
                     }}
@@ -209,27 +220,45 @@ const HeroSection = () => {
                   layoutId="button-bg"
                 />
               </motion.button>
-              
+
               <motion.button
                 className="px-8 py-4 bg-white/10 backdrop-blur-lg text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 flex items-center gap-2 group"
                 whileHover={{ scale: 1.05, y: -1 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={handleResumeDownload}
               >
                 <Download size={20} className="group-hover:animate-bounce" />
                 Download Resume
               </motion.button>
             </motion.div>
 
-            {/* Social Links with Enhanced Hover Effects */}
+            {/* Social Links with Enhanced Hover Effects - UPDATED GITHUB URL */}
             <motion.div variants={itemVariants} className="flex gap-4">
               {[
-                { icon: Mail, href: "mailto:shubham.soni1729@gmail.com", label: "Email", color: "hover:bg-red-500/20" },
-                { icon: Linkedin, href: "https://linkedin.com/in/2shubhamsoni", label: "LinkedIn", color: "hover:bg-blue-500/20" },
-                { icon: Github, href: "#", label: "GitHub", color: "hover:bg-gray-500/20" }
+                {
+                  icon: Mail,
+                  href: "mailto:shubham.soni1729@gmail.com",
+                  label: "Email",
+                  color: "hover:bg-red-500/20"
+                },
+                {
+                  icon: Linkedin,
+                  href: "https://linkedin.com/in/2shubhamsoni",
+                  label: "LinkedIn",
+                  color: "hover:bg-blue-500/20"
+                },
+                {
+                  icon: Github,
+                  href: "https://github.com/shubham-250320", // ✅ UPDATED WITH YOUR ACTUAL GITHUB URL
+                  label: "GitHub",
+                  color: "hover:bg-gray-500/20"
+                }
               ].map(({ icon: Icon, href, label, color }, index) => (
                 <motion.a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`p-3 bg-white/10 backdrop-blur-lg rounded-full text-white hover:bg-white/20 transition-all duration-300 border border-white/20 group ${color}`}
                   whileHover={{ scale: 1.1, rotate: 5, y: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -247,37 +276,114 @@ const HeroSection = () => {
             className="relative"
           >
             <div className="relative w-full max-w-md mx-auto">
-              {/* Professional Photo Placeholder */}
-              <motion.div 
-                className="aspect-square bg-gradient-to-br from-blue-400 to-green-400 rounded-3xl shadow-2xl overflow-hidden"
+              {/* Professional Photo - Enhanced Version */}
+              <motion.div
+                className="aspect-square bg-gradient-to-br from-blue-400 to-green-400 rounded-3xl shadow-2xl overflow-hidden relative p-2 group"
                 whileHover={{ scale: 1.02, rotate: 1 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <motion.div 
-                      className="text-6xl mb-4"
-                      animate={{ rotate: [0, 10, 0] }}
-                      transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-                    >
-                      👨‍💻
-                    </motion.div>
-                    <div className="text-lg font-semibold">Professional Photo</div>
-                    <div className="text-sm opacity-75">Place headshot here</div>
+                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-800">
+                  <Image
+                    src="/profile-photo.jpg"
+                    alt="Shubham Soni - Senior ServiceNow AI/ML Developer with 3.6+ years experience specializing in Virtual Agent optimization and Predictive Intelligence"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    priority
+                    quality={90}
+                    className="rounded-2xl transition-all duration-300 group-hover:scale-105"
+                    onLoad={(e) => {
+                      // Hide loading placeholder when image loads successfully
+                      const placeholder = e.target.parentElement?.querySelector('.loading-placeholder');
+                      if (placeholder) placeholder.style.opacity = '0';
+                    }}
+                    onError={(e) => {
+                      // Keep placeholder visible if image fails to load
+                      console.log('Profile photo failed to load from /profile-photo.jpg');
+                      e.target.style.display = 'none';
+                    }}
+                  />
+
+                  {/* Enhanced Loading Placeholder */}
+                  <div className="loading-placeholder absolute inset-0 bg-gray-800 flex items-center justify-center rounded-2xl transition-opacity duration-300">
+                    <div className="text-center text-white opacity-60">
+                      <motion.div
+                        className="text-6xl mb-4"
+                        animate={{ rotate: [0, 10, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                      >
+                        👨‍💻
+                      </motion.div>
+                      <div className="text-sm font-medium">Shubham Soni</div>
+                      <div className="text-xs opacity-75">ServiceNow AI/ML Developer</div>
+                    </div>
                   </div>
+
+                  {/* Professional Info Overlay */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                  >
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <motion.div
+                        className="text-sm font-semibold"
+                        initial={{ y: 20, opacity: 0 }}
+                        whileHover={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.1 }}
+                      >
+                        Shubham Soni
+                      </motion.div>
+                      <motion.div
+                        className="text-xs opacity-90"
+                        initial={{ y: 20, opacity: 0 }}
+                        whileHover={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        Senior ServiceNow AI/ML Developer
+                      </motion.div>
+                      <motion.div
+                        className="text-xs opacity-75 mt-1"
+                        initial={{ y: 20, opacity: 0 }}
+                        whileHover={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        Virtual Agent • Predictive Intelligence • 80% VA Accuracy
+                      </motion.div>
+                    </div>
+
+                    {/* Status Indicator */}
+                    <div className="absolute top-4 right-4">
+                      <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-lg"></div>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
-              
+
               {/* Floating Achievement Badges */}
-              <motion.div
-                className="absolute -top-4 -right-4 bg-green-400 text-white p-3 rounded-xl shadow-lg backdrop-blur-sm border border-white/20"
+              {/* Enhanced Clickable Innovation Award Badge */}
+              <motion.button
+                className="absolute -top-4 -right-4 bg-gradient-to-r from-green-400 to-green-500 text-white p-3 rounded-xl shadow-lg backdrop-blur-sm border border-white/20 cursor-pointer hover:from-green-500 hover:to-green-600 hover:shadow-xl transition-all duration-300 group"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.15, rotate: 5 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  window.open('https://drive.google.com/file/d/18xkpQyo1-5e92YDdmO6FhiuR8CqFTC2j/view?usp=sharing', '_blank', 'noopener,noreferrer');
+                  console.log('Innovation Award certificate opened');
+                }}
+                aria-label="View Innovation Award Certificate - Opens in new tab"
               >
-                🏆 Innovation Award
-              </motion.div>
-              
+                <span className="flex items-center gap-2">
+                  <span className="group-hover:animate-bounce">🏆</span>
+                  <span className="text-sm font-semibold whitespace-nowrap">Innovation Award</span>
+                </span>
+
+                {/* External Link Indicator */}
+                <span className="absolute -top-1 -right-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  ↗️
+                </span>
+              </motion.button>
+
               <motion.div
                 className="absolute -bottom-4 -left-4 bg-blue-500 text-white p-3 rounded-xl shadow-lg backdrop-blur-sm border border-white/20"
                 animate={{ y: [0, 10, 0] }}
@@ -287,6 +393,7 @@ const HeroSection = () => {
                 ⚡ 80% VA Accuracy
               </motion.div>
             </div>
+
           </motion.div>
         </motion.div>
 

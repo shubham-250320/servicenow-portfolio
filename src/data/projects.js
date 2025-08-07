@@ -25,7 +25,7 @@ export const projects = [
       "ChatGPT API",
       "JavaScript"
     ],
-    impact: "Achieved 40% L1 deflection, reducing support workload by 1,200 tickets/month and improving user satisfaction by 20%. Saved approximately $150K annually in support costs.",
+    impact: "Achieved 40% L1 deflection, reducing support workload by 20K tickets/month and improving user satisfaction by 20%. Significantly reduced operational overhead while enhancing service quality.",
     featured: true,
     icon: "Brain",
     metrics: [
@@ -68,13 +68,13 @@ function optimizeIntentAccuracy() {
     category: "ai-ml",
     complexity: "high",
     description: "Integrated ChatGPT APIs for automated knowledge article enrichment, boosting AI Search effectiveness by 30% and content discoverability.",
-    fullDescription: "Developed automated content enrichment pipeline using ChatGPT APIs to generate relevant metadata, tags, and improve article searchability across enterprise knowledge base with 500+ articles.",
+    fullDescription: "Developed automated content enrichment pipeline using ChatGPT APIs to generate relevant metadata, tags, and improve article searchability across enterprise knowledge base with 4k+ articles.",
     challenge: "Knowledge articles lacked proper metadata and keywords, resulting in poor search results (35% success rate) and reduced user self-service adoption. Manual content enrichment was time-consuming and inconsistent.",
     solution: "Built custom GPT integration with ServiceNow APIs to automatically enrich article metadata, generate relevant tags, optimize content for AI Search indexing, and implement automated quality scoring for content relevance.",
     results: {
       searchImprovement: "30%",
       automation: "80%",
-      articles: "500+",
+      articles: "4k+",
       accuracy: "92%",
       timeReduction: "75%"
     },
@@ -87,7 +87,7 @@ function optimizeIntentAccuracy() {
       "Natural Language Processing",
       "Automation Engine"
     ],
-    impact: "Improved search effectiveness by 30%, automated 80% of metadata generation process, processed 500+ articles with 92% accuracy, reduced manual effort by 75%",
+    impact: "Improved search effectiveness by 30%, automated 80% of metadata generation process, processed 4K+ articles with 92% accuracy, reduced manual effort by 75%",
     featured: true,
     icon: "Brain",
     metrics: [
@@ -155,7 +155,7 @@ function enrichKnowledgeArticle(articleId) {
       "Multi-Instance Management",
       "Compliance Framework"
     ],
-    impact: "Streamlined global operations across 5 regions, improved process efficiency by 45%, achieved 98% compliance score, reduced operational overhead by $200K annually",
+    impact: "Streamlined global operations across 5 regions, improved process efficiency by 45%, achieved 98% compliance score, and significantly reduced operational overhead through automation.",
     featured: false,
     icon: "Zap",
     metrics: [
