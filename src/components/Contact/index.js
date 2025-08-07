@@ -160,7 +160,7 @@ const ContactSection = () => {
                   <div className="text-blue-200 text-xs">Response Time</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-400">3.7+</div>
+                  <div className="text-2xl font-bold text-green-400">3.6+</div>
                   <div className="text-blue-200 text-xs">Years Experience</div>
                 </div>
                 <div className="text-center">
