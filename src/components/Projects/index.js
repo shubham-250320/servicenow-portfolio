@@ -222,7 +222,7 @@ const ProjectsSection = () => {
                         Learn More →
                       </motion.button>
                       
-                      <div className="flex gap-2">
+                      {/* <div className="flex gap-2">
                         {project.liveUrl && (
                           <motion.a
                             href={project.liveUrl}
@@ -241,7 +241,7 @@ const ProjectsSection = () => {
                             <Github size={16} />
                           </motion.a>
                         )}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </motion.div>
