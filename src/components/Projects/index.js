@@ -373,7 +373,7 @@ const ProjectsSection = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-4">
+                  {/* <div className="flex gap-4">
                     {selectedProject.liveUrl && (
                       <motion.a
                         href={selectedProject.liveUrl}
@@ -394,7 +394,7 @@ const ProjectsSection = () => {
                         View Documentation
                       </motion.a>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </motion.div>
             </motion.div>
