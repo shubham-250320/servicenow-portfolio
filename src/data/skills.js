@@ -190,7 +190,7 @@ export const certifications = [
       'Virtual Agent & NLU', 'Performance Dashboarding', 'AI-driven Automation'
     ],
     issuer: 'ServiceNow',
-    validUntil: '2028',
+    validUntil: '2026',
     verificationEnabled: true,
     featured: true
   },
@@ -210,7 +210,7 @@ export const certifications = [
       'Knowledge Management', 'SLA Configuration', 'Workflow Automation'
     ],
     issuer: 'ServiceNow',
-    validUntil: '2028',
+    validUntil: '2026',
     verificationEnabled: true,
     featured: true
   },
@@ -230,7 +230,7 @@ export const certifications = [
       'Flow Designer', 'Application Lifecycle'
     ],
     issuer: 'ServiceNow',
-    validUntil: '2028',
+    validUntil: '2026',
     verificationEnabled: true,
     featured: true
   },
@@ -250,7 +250,7 @@ export const certifications = [
       'Reporting & Dashboards', 'Notifications & Events'
     ],
     issuer: 'ServiceNow',
-    validUntil: '2028',
+    validUntil: '2026',
     verificationEnabled: true,
     featured: true
   },
